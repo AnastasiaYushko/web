@@ -1,0 +1,27 @@
+body {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background-color: rgb(212, 205, 195);
+}
+
+.circle {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 150px;
+    height: 150px;
+    background-color: red;
+    border-radius: 50%;
+    transition: all 0.8s;
+}
+
+.enlarged {
+    transform: scale(2);
+    background-color: yellow;
+}
+
+.outline {
+    background-color: transparent;
+    border: 3px solid red;
+}

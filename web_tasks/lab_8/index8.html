@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: rgb(172, 172, 206);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        #puzzle {
+            display: grid;
+            grid-template-columns: repeat(3, 300px);
+            grid-template-rows: repeat(3, 300px);
+            border-width: 5px; /* толщина рамки */
+            border-color: black; 
+            border-style: dotted; 
+        }
+
+        #message {
+            display: none;
+            font-size: 70px;
+            margin-bottom: 10px;
+        }
+
+        #restart{
+            display: none;
+            font-size: 80px;
+            box-shadow: 10px 0 40px rgba(59, 136, 95, 0.8);
+        }
+
+    </style>
+    <title>Пазл перевертыш</title>
+</head>
+
+<body>
+    <div id="puzzle"></div>
+    <div id="message"></div>
+    <button id="restart" ></button>
+
+<script>
+    const puzzleContainer = document.getElementById('puzzle');
+    const message = document.getElementById('message');
+    const restartButton = document.getElementById('restart');
+
+    createPieces();
+
+    function createPieces() {
+        for (var i = 1; i <= 9; i++)  {
+            const piece = document.createElement('div');
+            piece.classList.add('piece');
+            piece.style.backgroundImage = `url('image/${i}.jpg')`;
+            piece.style.transform = `rotate(${Math.floor(Math.random() * 4) * 90}deg)`;
+            // Если сразу стоит ОК, то не будет крутиться
+            piece.onclick = piece.style.transform === 'rotate(0deg)' ? null : rotatePiece; 
+            //piece.onclick = rotatePiece;
+            puzzleContainer.appendChild(piece);
+        };
+    }
+
+    // вращает вправо
+    function rotatePiece() {
+        let rotation = (parseFloat(this.style.transform.replace('rotate(', '').replace('deg)', '')) + 90) % 360;
+        this.style.transform = `rotate(${rotation}deg)`;
+        if (rotation === 0) { 
+            this.onclick = null; 
+        }
+        checkWin();
+    }
+
+    function checkWin() {
+        // что у всех кусочков вращение == 0
+        const allCorrect = [...puzzleContainer.children].every(piece => 
+            parseFloat(piece.style.transform.replace('rotate(', '').replace('deg)', '')) === 0
+        );
+
+        if (allCorrect) {
+            message.style.display = 'block';
+            message.textContent = 'Конец!';
+            restartButton.style.display = 'block';
+            restartButton.textContent = "Начать заново";
+        }
+    }
+
+    restartButton.onclick = () => {
+        puzzleContainer.innerHTML = '';
+        createPieces();
+        message.style.display = 'none';
+        restartButton.style.display = 'none';
+    };
+</script>
+</body>
+</html>

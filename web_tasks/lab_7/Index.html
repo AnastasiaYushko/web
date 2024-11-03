@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Круги на странице</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<script>
+    let clickCount = 0;
+
+     window.onload = () => {
+        createCircle();
+    };
+
+    document.body.addEventListener('click', (event) => {
+        if (clickCount === 0 ){
+        event.stopPropagation();
+        createCircle();
+        }
+    });
+
+    function createCircle() {
+        const circle = document.createElement('div');
+        circle.classList.add('circle');
+
+        circle.addEventListener('click', (event) => {
+            event.stopPropagation();
+            clickCount++;
+
+            if (clickCount === 1) {
+                circle.classList.add('enlarged');
+            } else if (clickCount === 2) {
+                circle.classList.remove('enlarged');
+            } else if (clickCount === 3) {
+                circle.classList.add('outline');
+            } else if (clickCount === 4) {
+                circle.remove(); 
+                clickCount = 0; 
+            }
+        });
+
+        document.body.appendChild(circle);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Calculator</title>
+    <style>
+        table {
+            border: 1px solid black;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        input[type="button"] {
+            width: 100%;
+            padding: 20px 40px;
+            background-color: rgb(167, 147, 76);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+        }
+
+        input[type="text"] {
+            padding: 20px 30px;
+            font-size: 24px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="calcu">
+        <tr>
+            <td colspan="4"><input type="text" id="result" readonly></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="(" onclick="dis('(')"></td>
+            <td><input type="button" value=")" onclick="dis(')')"></td>
+            <td><input type="button" value="c" onclick="clr()"></td>
+            <td><input type="button" value="/" onclick="dis('/')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="1" onclick="dis('1')"></td>
+            <td><input type="button" value="2" onclick="dis('2')"></td>
+            <td><input type="button" value="3" onclick="dis('3')"></td>
+            <td><input type="button" value="*" onclick="dis('*')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="4" onclick="dis('4')"></td>
+            <td><input type="button" value="5" onclick="dis('5')"></td>
+            <td><input type="button" value="6" onclick="dis('6')"></td>
+            <td><input type="button" value="-" onclick="dis('-')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="7" onclick="dis('7')"></td>
+            <td><input type="button" value="8" onclick="dis('8')"></td>
+            <td><input type="button" value="9" onclick="dis('9')"></td>
+            <td><input type="button" value="+" onclick="dis('+')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="0" onclick="dis('0')"></td>
+            <td><input type="button" value="." onclick="dis('.')"></td>
+            <td><input type="button" value="√" onclick="sqrt()"></td>
+            <td><input type="button" value="^" onclick="dis('**')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="sin" onclick="dis('Math.sin(')"></td>
+            <td><input type="button" value="cos" onclick="dis('Math.cos(')"></td>
+            <td><input type="button" value="tg" onclick="dis('Math.tan(')"></td>
+            <td><input type="button" value="ctg" onclick="dis('1/Math.tan(')"></td>
+        </tr>
+        <tr>
+            <td colspan="3"><input type="button" value="=" onclick="solve()"></td>
+        </tr>
+    </table>
+
+    <script>
+        let lastChar = '';
+        let errorOccurred = false;
+
+        // Function that display value
+        function dis(val) {
+            if (errorOccurred) {
+                clr(); // Очистка ошибки при нажатии на любой символ
+                errorOccurred = false; // Сбрасываем флаг ошибки
+            }
+
+            // Проверка на повторные операторы
+            const operators = ['+', '-', '*', '/', 'Math.sin(', 'Math.cos(', 'Math.tan(', '1/Math.tan(', '**', '√'];
+            
+            if (operators.includes(lastChar) && operators.includes(val)) {
+                return; // Не добавляем оператор, если предыдущий тоже оператор
+            }
+
+            document.getElementById("result").value += val;
+            lastChar = val; // Сохраняем последний введенный символ
+        }
+                // Function that evaluates the digit and return result
+                function solve() {
+            let x = document.getElementById("result").value;
+            try {
+                let y = eval(x.replace(/^/g, '**'));
+                document.getElementById("result").value = y;
+                lastChar = y.toString(); // Обновляем последний символ на результат
+            } catch (e) {
+                document.getElementById("result").value = "Error";
+                errorOccurred = true; // Устанавливаем флаг ошибки
+                lastChar = ''; // Сбрасываем последний символ
+            }
+        }
+
+        function sqrt() {
+            let x = document.getElementById("result").value;
+            try {
+                let y = Math.sqrt(eval(x));
+                document.getElementById("result").value = y;
+                lastChar = y.toString(); // Обновляем последний символ на результат
+            } catch (e) {
+                document.getElementById("result").value = "Error";
+                errorOccurred = true; // Устанавливаем флаг ошибки
+                lastChar = ''; // Сбрасываем последний символ
+            }
+        }
+
+        // Function that clear the display
+        function clr() {
+            document.getElementById("result").value = "";
+            lastChar = ''; // Сбрасываем последний символ
+        }
+    </script>
+</body>
+
+</html>

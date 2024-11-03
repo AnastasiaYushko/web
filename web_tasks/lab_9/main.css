@@ -1,0 +1,12 @@
+#time {
+    display: flex;
+    color: rgb(73, 34, 61);
+    font-size: 75px;
+}
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(blue, pink);
+    height: 100vh;
+}
