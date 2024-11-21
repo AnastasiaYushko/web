@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Викторина об устройстве человека</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #a3848c;
+            color: #d2c0c0;
+            text-align: center;
+            font-size: 23px;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .quiz-container {
+            width: 100%;
+            max-width: 800px;
+            height: 350px;
+            padding: 20px;
+            background-color: #c83157;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        .answers button {
+            display: block;
+            justify-content: center;
+            align-items: center;
+            margin: 10px auto;
+            padding: 10px 20px;
+            height: 50px;
+            width: 300px;
+            font-size: 23px;
+            color: #2b1f4d;
+            background-color: #9db0c6;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .answers button:hover {
+            background-color: #288e2d;
+        }
+
+        .result {
+            display: block;
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="quiz-container">
+        <div id="quiz">
+            <div class="question" id="question"></div>
+            <div class="answers" id="answers"></div>
+        </div>
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "1. Какой орган отвечает за перекачку крови в организме?",
+                options: ["Легкие", "Сердце", "Печень", "Почки"],
+                correct: 1,
+            },
+            {
+                question: "2. Сколько костей в теле взрослого человека?",
+                options: ["196", "206", "186", "216"],
+                correct: 1,
+            },
+            {
+                question: "3. Какой самый большой орган в организме человека?",
+                options: ["Легкие", "Печень", "Кожа", "Сердце"],
+                correct: 2,
+            },
+            {
+                question: "4. Сколько зубов у взрослого человека в норме?",
+                options: ["28", "30", "32", "34"],
+                correct: 2,
+            },
+            {
+                question: "5. Какой орган отвечает за координацию движений?",
+                options: ["Гипофиз", "Гипоталамус", "Мозжечок", "Мозолистое тело"],
+                correct: 2,
+            },
+            {
+                question: "6. Какой из органов фильтрует кровь?",
+                options: ["Печень", "Почки", "Селезенка", "Поджелудочная железа"],
+                correct: 1,
+            },
+            {
+                question: "7. Какой гормон регулирует уровень сахара в крови?",
+                options: ["Инсулин", "Адреналин", "Глюкагон", "Мелатонин"],
+                correct: 0,
+            },
+            {
+                question: "8. Какая часть глаза отвечает за восприятие света?",
+                options: ["Хрусталик", "Роговица", "Сетчатка", "Радужка"],
+                correct: 2,
+            },
+            {
+                question: "9. Какая мышца является самой сильной в организме человека?",
+                options: ["Язык", "Дельтавидная", "Жевательная", "Бицепс"],
+                correct: 2,
+            },
+            {
+                question: "10. Сколько камер в сердце человека?",
+                options: ["2", "4", "3", "5"],
+                correct: 1,
+            },
+        ];
+
+        const questionElement = document.getElementById("question");
+        const answersElement = document.getElementById("answers");
+        const resultElement = document.getElementById("result");
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            if (currentQuestion < quizData.length) {
+                const questionData = quizData[currentQuestion];
+                questionElement.textContent = questionData.question;
+                answersElement.innerHTML = "";
+
+                questionData.options.forEach((option, index) => {
+                    const button = document.createElement("button");
+                    button.textContent = option;
+                    button.addEventListener("click", () => checkAnswer(index));
+                    answersElement.appendChild(button);
+                });
+            } else {
+                showResult();
+            }
+        }
+
+        function checkAnswer(selectedIndex) {
+            if (selectedIndex === quizData[currentQuestion].correct) {
+                score++;
+            }
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function showResult() {
+            questionElement.style.display = "none";
+            answersElement.style.display = "none";
+            resultElement.style.display = "block";
+            resultElement.textContent = `Вы ответили правильно на ${score} из ${quizData.length} вопросов!`;
+        }
+
+        loadQuestion();
+    </script>
+</body>
+
+</html>

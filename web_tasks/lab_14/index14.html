@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Крестики-Нолики</title>
+    <style>
+        body {
+            text-align: center;
+            background: #a2bfde;
+            font-family: URW Chancery L, cursive;
+            cursor: default;
+        }
+
+        #game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 0;;
+        }
+
+        .cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            cursor: pointer;
+            border: 3px solid rgb(184, 65, 190);
+        }
+
+        .cell:nth-child(3n + 1) {
+            border-left: none;
+        }
+
+        .cell:nth-child(3n) {
+            border-right: none;
+        }
+
+        .cell:nth-child(-n + 3) {
+            border-top: none;
+        }
+
+        .cell:nth-last-child(-n + 3) {
+            border-bottom: none;
+        }
+
+        #status {
+            display: block;
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        #winner-block {
+            display: none;
+            font-size: 50px;
+            font-weight: bold;
+            padding: 20px;
+            border: 2px solid #15661a;
+            color: #15661a;
+            border-radius: 10px;
+            background: #a5d2b5;
+            margin-top: 10px;
+        }
+
+        #restart-button {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #66ba74;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #restart-button:hover {
+            background-color: #09c15f;
+        }
+
+        .scoreboard {
+            margin: 40px;
+        }
+        .fox {
+            font-size: 25px;
+            display: inline-block;
+            padding-left: 2%;
+            padding-right: 2%;
+            color: #c07804;
+        }
+        .wolf{
+            font-size: 25px;
+            display: inline-block;
+            padding-left: 2%;
+            padding-right: 2%;
+            color: #676563;
+        }
+
+        .rounds{
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="font-size: 50px"> Крестики-Нолики 🦊🐺</h1>
+    <div class="scoreboard">
+        <div class="rounds">Раундов сыграно: <span id="rounds">0</span></div>
+        <div class="fox">Победы 🦊: <span id="fox-wins">0</span></div>
+        <div class="wolf">Победы 🐺: <span id="wolf-wins">0</span></div>
+    </div>
+    <div id="game-container">
+        <div id="status">Начинайте играть! (ход🦊)</div>
+        <div id="game-board"></div>
+        <div id="winner-block"></div>
+        <button id="restart-button" onclick="resetBoard()">Начать заново</button>
+    </div>
+    <script src="js14.js"></script>
+</body>
+
+</html>
