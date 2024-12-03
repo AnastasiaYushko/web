@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пин-код</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Введите пин-код</h1>
+        <div class="pin-inputs">
+            <input id="pin1" class="pin-input" type="password" maxlength="6" readonly>
+            <input id="pin2" class="pin-input" type="password" maxlength="6" readonly>
+        </div>
+        <div class="numpad">
+            <button onclick="addDigit('1')">1</button>
+            <button onclick="addDigit('2')">2</button>
+            <button onclick="addDigit('3')">3</button>
+            <button onclick="addDigit('4')">4</button>
+            <button onclick="addDigit('5')">5</button>
+            <button onclick="addDigit('6')">6</button>
+            <button onclick="addDigit('7')">7</button>
+            <button onclick="addDigit('8')">8</button>
+            <button onclick="addDigit('9')">9</button>
+            <button onclick="clearPin()">C</button>
+            <button onclick="addDigit('0')">0</button>
+            <button onclick="checkPins()">✔</button>
+        </div>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        //Отслеживание какое поле активно
+        let currentInput = 1;
+
+        //Добавление цифры в пин-код
+        function addDigit(digit) {
+            const input = document.getElementById(`pin${currentInput}`);
+            if (input.value.length < 6) {
+                input.value += digit;
+            }
+        }
+
+        //Очистка
+        function clearPin() {
+            document.getElementById(`pin${currentInput}`).value = '';
+        }
+
+        // Проверка равенства пин-кодов
+        function checkPins() {
+            const pin1 = document.getElementById('pin1').value;
+            const pin2 = document.getElementById('pin2').value;
+            const message = document.getElementById('message');
+
+            if (pin1.length === 0 || pin2.length === 0) {
+                message.textContent = 'Не все поля заполнены!';
+            } else if (pin1.length !== 6 || pin2.length !== 6) {
+                message.textContent = 'Пин-код должен иметь 6 знаков!';
+            } else if (pin1 === pin2) {
+                message.textContent = 'Пин-коды совпадают!';
+                message.style.color = 'green';
+            } else {
+                message.textContent = 'Пин-коды не совпадают!';
+            }
+        }
+
+        document.getElementById('pin1').addEventListener('focus', () => currentInput = 1);
+        document.getElementById('pin2').addEventListener('focus', () => currentInput = 2);
+    </script>
+</body>
+
+</html>

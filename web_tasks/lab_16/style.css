@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #6bb379, #6399b3);
+    transform: scale(1.5);
+    overflow: hidden;
+}
+
+.container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/*Контейнер пин-кодов*/
+.pin-inputs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/*Поле для пин-кода*/
+.pin-input {
+    font-size: 25px;
+    width: 87px;
+    height: 40px;
+    text-align: center;
+    margin: 0 5px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    letter-spacing: 2px;
+}
+
+/*Поле для пин-кода при нажатии*/
+.pin-input:focus {
+    border-color: #1a6bb3;
+    outline: none;
+}
+
+/*Контейнер клавиатуры*/
+.numpad {
+    display: grid;
+    grid-template-columns: repeat(3, 60px);
+    gap: 10px;
+    justify-content: center;
+}
+
+/*Кнопка клиавиатуры*/
+.numpad button {
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    background: linear-gradient(135deg, #6bb379, #6399b3);
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+
+/*Кнопка клиавиатуры при наведении*/
+.numpad button:hover {
+    background: linear-gradient(135deg, #5c9067, #578095);
+}
+
+.message {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #d9534f;
+}
