@@ -1,0 +1,156 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b); 
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    transform: scale(1.25);
+    overflow: hidden;
+}
+
+/*Контейнер игры */
+#game-container {
+    display: flex;
+    justify-content: space-between; /* Распределяем блоки по сторонам */
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    padding: 30px;
+    width: 90%;
+    max-width: 1000px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+/*Левая часть контейнера */
+#game-left {
+    text-align: center;
+    max-width: 50%;
+    margin-left: 10px;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #ffd700; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+button {
+    background-color: #ff5722; 
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #e64a19;
+    transform: scale(1.05); 
+}
+
+/*Правила игры*/
+#rules {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.9); 
+    color: #333;
+    border-radius: 10px;
+    font-size: 1em;
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/*Контейнер поля ввода */
+#game-inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/*Поле ввода*/
+#game-inputs input[type="number"] {
+    width: 100px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    height: 22px;
+}
+
+/*Блок с результатами справа */
+#game-right {
+    text-align: center;
+    max-width: 40%;
+    margin-right: 10px;
+    margin-top: 30px;
+}
+
+/*Блок с результатами и историей */
+#result, #history {
+    margin-top: 15px;
+    font-size: 1.2em;
+}
+
+/*Запись*/
+#history p {
+    background: rgba(255, 255, 255, 0.2); 
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+    color: #ffd700; 
+    font-weight: bold;
+    min-width: 350px;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+input:focus {
+    outline: 2px solid #ff5722;
+}
+
+/* Стили для кнопок пагинации */
+#pagination-buttons button {
+    margin: 10px 5px;
+    text-align: center;
+}
+
+/*Отключенные кнопки*/
+#pagination-buttons button:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+}
+
+/*Сообщение поздравление*/
+#congratulation-message {
+    font-size: 1.5em;
+    background: #579817;
+    padding: 15px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    margin-top: 95px;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    transition: transform 0.2s, background-color 0.3s;
+    min-width: 350px;
+}
+
+.hidden {
+    display: none;
+}
+

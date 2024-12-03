@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Быки и Коровы</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="game-left">
+            <h1>🐮 Быки и Коровы 🐂</h1>
+            <button id="rules-button">📜 Правила игры</button>
+            <div id="rules">
+                <p>
+                    🎲 Число генерируется случайным образом от 1000 до 9999.<br>
+                    🐂 "Бык" — правильная цифра на правильной позиции.<br>
+                    🐮 "Корова" — правильная цифра на неправильной позиции.<br>
+                    🎯 Игра заканчивается, когда число отгадано.
+                </p>
+            </div>
+            <div id="game-inputs">
+                <input 
+                    type="number" 
+                    id="guess-input" 
+                    min="1000" 
+                    max="9999" 
+
+                    maxlength="4" 
+                    pattern="\d{4}">
+                <button id="guess-button">Угадать</button>
+            </div>
+            <button id="restart-button">Начать заново</button>
+        </div>
+
+        <div id="game-right">
+            <div id="result"></div>
+            <div id="congratulation-message" class="hidden"></div>
+            <div id="history"></div>
+            <div id="pagination-buttons"></div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
+
+
